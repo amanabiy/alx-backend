@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Basic Cache module 
+Basic Cache module
 with put and get method
 """
 BaseCaching = __import__('base_caching').BaseCaching
