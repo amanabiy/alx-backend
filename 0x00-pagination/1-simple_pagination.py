@@ -34,7 +34,7 @@ class Server:
         end = min(end, len(self.dataset()))
         if start > len(self.dataset()):
             return []
-        return self.__dataset[start:end]
+        return self.dataset()[start:end]
 
 
 def index_range(page: int, page_size: int) -> tuple:
