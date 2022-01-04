@@ -24,6 +24,5 @@ msgid "home_title"
 msgstr "Bienvenue chez Holberton"
 
 #: template/3-index.html:10
-msgid home_header
+msgid "home_header"
 msgstr "Bonjour monde!"
-
