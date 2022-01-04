@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 Basic Falsk app module
@@ -22,7 +21,8 @@ app.config.from_object(Config)
 
 @app.route('/')
 def hello():
-    """ home route """
+    """home route
+    """
     return render_template('1-index.html')
 
 
