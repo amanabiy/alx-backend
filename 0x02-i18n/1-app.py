@@ -12,15 +12,10 @@ class Config:
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = LANGUAGES[0]
     BABEL_DEFAULT_TIMEZONE = LANGUAGES[1]
-    # def __init__(self):
-    #     """instantiate"""
-
 
 app = Flask(__name__)
-app.config.from_object('Config')
-# app.config['BABEL_DEFAULT_LOCALE'] = Config.LANGUAGES[0]
-# app.config['BABEL_DEFAULT_TIMEZONE'] = Config.LANGUAGES[1]
 bable = Bable(app)
+app.config.from_object('Config')
 
 
 @app.route("/")
@@ -30,4 +25,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port="5000")
