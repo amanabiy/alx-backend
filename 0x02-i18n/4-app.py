@@ -31,7 +31,10 @@ def get_locale():
     """
     get the best match language
     """
-    return request.accept_languages.best_match(Config.LANGUAGES)
+    local = request.args.get('locale')
+    if local and local in app.config['LANGUAGES']:
+        return local
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == "__main__":
