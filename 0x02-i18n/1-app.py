@@ -10,10 +10,14 @@ from flask_babel import Bable
 class Config:
     """ languages class """
     LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = LANGUAGES[0]
+    BABEL_DEFAULT_TIMEZONE = LANGUAGES[1]
+    # def __init__(self):
+    #     """instantiate"""
 
 
 app = Flask(__name__)
-app.config = Config()
+app.config.from_object('Config')
 # app.config['BABEL_DEFAULT_LOCALE'] = Config.LANGUAGES[0]
 # app.config['BABEL_DEFAULT_TIMEZONE'] = Config.LANGUAGES[1]
 bable = Bable(app)
