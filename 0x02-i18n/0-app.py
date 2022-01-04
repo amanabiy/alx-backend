@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import Flask, render_template
 from flask_babel import Babel
 
@@ -7,6 +8,7 @@ babel = Babel(app)
 
 @app.route("/")
 def home():
+    """ display home route"""
     return render_template('0-index.html')
 
 
