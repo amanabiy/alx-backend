@@ -2,9 +2,11 @@
 """
 Basic Falsk app module
 """
+from datetime import timezone
 from typing import Optional
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
+import pytz
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -62,6 +64,19 @@ def get_user():
 def before_request():
     """ set users in global variable before request """
     g.user = get_user()
+
+@babel.timezoneselector
+def get_timezone():
+    """ set timezone accordingly """
+    timezone = request.args.get('timezone')
+    if timezone in pytz.all_timezones_set:
+        return timezone
+    # else:
+    #     raise pytz.exceptions.UnknownTimeZoneError
+    timezone = getattr(g.user, 'timezone', None)
+    if timezone is not None and timezone in pytz.all_timezones_set:
+        return timezone
+    return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
 if __name__ == "__main__":
