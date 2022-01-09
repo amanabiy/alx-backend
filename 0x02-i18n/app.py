@@ -2,9 +2,10 @@
 """
 Basic Falsk app module
 """
+import datetime
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-import datetime
+from babel.dates import format_datetime
 import pytz
 
 app = Flask(__name__)
@@ -31,7 +32,7 @@ app.config.from_object(Config)
 def hello():
     """home route
     """
-    return render_template('7-index.html')
+    return render_template('index.html')
 
 
 @babel.localeselector
@@ -63,7 +64,13 @@ def get_user():
 def before_request():
     """ set users in global variable before request """
     g.user = get_user()
-
+    utcNow = pytz.utc.localize(datetime.datetime.utcnow())
+    g.local_time = utcNow.astimezone(pytz.timezone(get_timezone()))
+    locale = get_locale()
+    if locale == 'fr':
+        g.local_time = format_datetime(g.local_time, 'dd MMM yyyy a hh:mm:ss ',locale=locale)
+    else:
+        g.local_time = format_datetime(g.local_time, 'MMM dd, yyyy, hh:mm:ss a',locale=locale)
 
 @babel.timezoneselector
 def get_timezone():
