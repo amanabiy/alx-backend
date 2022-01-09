@@ -67,10 +67,11 @@ def before_request():
     utcNow = pytz.utc.localize(datetime.datetime.utcnow())
     g.local_time = utcNow.astimezone(pytz.timezone(get_timezone()))
     locale = get_locale()
-    if locale == 'fr':
-        g.local_time = format_datetime(g.local_time, 'dd MMM yyyy a hh:mm:ss ',locale=locale)
-    else:
-        g.local_time = format_datetime(g.local_time, 'MMM dd, yyyy, hh:mm:ss a',locale=locale)
+    g.local_time = format_datetime(g.local_time,locale=locale)
+    # if locale == 'fr':
+    #     g.local_time = format_datetime(g.local_time, 'dd MMM yyyy a hh:mm:ss ',locale=locale)
+    # else:
+    #     g.local_time = format_datetime(g.local_time, 'MMM dd, yyyy, hh:mm:ss a',locale=locale)
 
 @babel.timezoneselector
 def get_timezone():
