@@ -74,7 +74,7 @@ def before_request():
     #     g.local_time = format_datetime(g.local_time, 'MMM dd, yyyy, hh:mm:ss a',locale=locale)
 
 @babel.timezoneselector
-def get_timezone():
+def get_timezone() -> str:
     """ set timezone accordingly """
     timezone = request.args.get('timezone')
     if timezone in pytz.all_timezones_set:
