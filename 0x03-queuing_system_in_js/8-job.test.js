@@ -47,13 +47,13 @@ describe('creatPushNotificationsJobs', () => {
         queue.testMode.exit()
     });
 
-    it('does something cool', function() {
+    it('add job to the queue', function() {
         queue.createJob('myJob', { foo: 'bar' }).save();
         queue.createJob('anotherJob', { baz: 'bip' }).save();
         expect(queue.testMode.jobs.length).to.equal(2);
         expect(queue.testMode.jobs[0].type).to.equal('myJob');
         expect(queue.testMode.jobs[0].data).to.eql({ foo: 'bar' });
-      });      
+    });      
 
     it('it works if the given is array of of one job object', () => {
         createPushNotificationsJobs(list, queue);
