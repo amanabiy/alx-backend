@@ -1,6 +1,6 @@
 function createPushNotificationsJobs(jobs, queue) {
     if (!Array.isArray(jobs))
-        return new Error(`Phone number ${phoneNumber} is blacklisted`);
+        return new Error('Jobs is not an array');
     jobs.forEach((job_to) => {
         var job = queue.create('push_notification_code', job_to)
         .save((error) => {
